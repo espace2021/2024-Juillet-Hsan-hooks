@@ -1,0 +1,329 @@
+.App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.pagination {
+  margin-top: 20px;
+  margin-bottom: 20px; /* Ajoute de l'espace en bas de la pagination */
+  margin-right: 20px;
+  display: flex;
+  justify-content: right;
+
+}
+
+.pagination button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  margin: 0 1px;
+  color: blue;
+  font-size: 14;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 5px; /* Bordures arrondies */
+  transition: background-color 0.3s, transform 0.3s; /* Transitions fluides */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); /* Ombre pour les boutons */
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+  transform: translateY(-2px); /* Effet de soulèvement au survol */
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  color: white;
+  cursor: not-allowed;
+  box-shadow: none; /* Supprime l'ombre pour les boutons désactivés */
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+  cursor: default;
+  font-weight: bold;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée pour le bouton actif */
+}
+.table-container {
+  /* max-height: 600px;  Hauteur fixe pour activer le défilement */
+   /*overflow-y: auto;  /* Activer le défilement vertical */
+   border: 1px solid #ddd; /* Bordure pour le conteneur */
+   border-radius: 8px; /* Coins arrondis pour le conteneur */
+   margin: 20px 0; /* Marge autour du conteneur */
+   padding: 0 10px; /* Espacement intérieur */
+   
+   
+ }
+ table {
+   width: 100%; /* Largeur flexible du tableau */
+   border-collapse: collapse; /* Fusionner les bordures des cellules adjacentes */
+   margin: 20px auto; /* Marge autour du tableau */
+     
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     
+     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+     
+ }
+/* Header Styles */
+thead {
+  background-color: #009879;
+  color: #ffffff;
+}
+
+thead th {
+background-color: #4CAF50; /* Couleur de fond bleue */
+color: white; /* Texte blanc */
+text-align: center; /* Alignement central du texte */
+padding: 10px 20px; /* Rembourrage pour le contenu des en-têtes */
+border: 1px solid #ddd; /* Bordure fine grise */
+}
+
+/* Row Styles */
+tbody td {
+text-align: center; /* Alignement central du texte */
+padding: 10px; /* Rembourrage pour le contenu des cellules */
+border: 1px solid #ddd; /* Bordure fine grise */
+
+  
+  
+
+
+}
+/* Style des lignes alternées */
+tr:nth-child(odd) {
+background-color: #f8f9fa; /* Couleur de fond gris clair */
+
+}
+
+/* Style des cellules responsives */
+@media (max-width: 768px) {
+th, td {
+  padding: 5px 10px; /* Réduire le rembourrage sur les petits écrans */
+}
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #cee4f8;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Button Styles */
+button {
+border: none;
+padding: 8px 12px;
+cursor: pointer;
+font-size: 0.875em;
+border-radius: 25px; /* Assure un arrondi de 25 pixels */
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5px;
+text-transform: uppercase;
+letter-spacing: 1px;
+position: relative;
+overflow: hidden;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+
+button.new {
+background-color: #052a06;
+color: white;
+box-shadow: 0 4px 8px rgba(145, 166, 145, 0.4);
+border-radius: 5px; /* Fully rounded */
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+text-transform: uppercase;
+margin-top: 10px;
+margin-left: 10px;
+margin-bottom: 10px;
+font-size: 0.875em; /* Ajustez la taille du texte */
+font-weight: bold; /* Optionnel : pour rendre le texte en gras */
+}
+button.edit {
+  background-color: #7439e3;
+  color: white;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+  border-radius: 5px; /* Fully rounded */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+    font-size: 0.875em; /* Ajustez la taille du texte */
+  font-weight: bold; /* Optionnel : pour rendre le texte en gras */
+  
+}
+
+button.delete {
+background-color: #f44336;
+color: white;
+box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+border-radius: 5px; /* Fully rounded */
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+text-transform: uppercase;
+  font-size: 0.875em; /* Ajustez la taille du texte */
+font-weight: bold; /* Optionnel : pour rendre le texte en gras */
+
+}
+button.new:hover {
+background-color: #388e3c9b; /* Darker green */
+box-shadow: 0 6px 12px rgba(56, 142, 60, 0.4);
+}
+button.edit:hover {
+  background-color: #383e8e; /* Darker green */
+  box-shadow: 0 6px 12px rgba(56, 142, 60, 0.4);
+}
+
+button.delete:hover {
+  background-color: #d32f2f; /* Darker red */
+  box-shadow: 0 6px 12px rgba(211, 47, 47, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button.edit:active {
+  background-color: #2E7D32; /* Even darker green */
+}
+button.new:active {
+background-color: #2E7D32; /* Even darker green */
+}
+
+button.delete:active {
+  background-color: #c62828; /* Even darker red */
+}
+
+
+/* Styles pour le conteneur du bouton */
+.button-container {
+margin-bottom: 15px; /* Espace entre le bouton et le tableau */
+display: flex;
+justify-content: flex-end; /* Aligne le bouton à droite */
+
+}
+
+
+/* Effets au survol et lors du clic */
+.button-new:hover {
+background-color: #45a049; /* Couleur plus foncée au survol */
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button-new:active {
+background-color: #388e3c; /* Couleur encore plus foncée lors du clic */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Style for the limit selector container */
+.limit-selector-container {
+display: flex;
+align-items: center;
+margin: 10px 0;
+justify-content: flex-end;
+}
+
+/* Style for the label */
+.limit-selector-container label {
+font-weight: bold;
+margin-right: 10px;
+}
+
+/* Style for the select element */
+.limit-selector-container select {
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+/* Change border color on focus */
+.limit-selector-container select:focus {
+border-color: #007bff;
+outline: none;
+}
+
+/* Additional styles for the select options */
+.limit-selector-container option {
+padding: 5px;
+}
+
+/* Style for the search container */
+.search-container {
+display: flex;
+align-items: center;
+position: relative;
+}
+
+.search-container .fa-search {
+position: absolute;
+left: 10px;
+color: #aaa;
+}
+
+.search-input {
+padding: 10px 10px 10px 30px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+width: 300px;
+transition: all 0.3s ease;
+}
+
+.search-input:focus {
+border-color: #007bff;
+outline: none;
+}
+
+/* Style for the limit selector container */
+.limit-selector-container {
+display: flex;
+align-items: center;
+justify-content: flex-end; /* Aligns the container to the right */
+margin: 10px 0;
+width: 100%; /* Takes full width of the container */
+}
+
+/* Style for the label */
+.limit-selector-container label {
+font-weight: bold;
+margin-right: 10px;
+}
+
+/* Style for the select element */
+.limit-selector-container select {
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+/* Change border color on focus */
+.limit-selector-container select:focus {
+border-color: #007bff;
+outline: none;
+}
+
+/* Additional styles for the select options */
+.limit-selector-container option {
+padding: 5px;
+}
+
+/* Style for the container holding the add button and search input */
+.table-container-header {
+
+  
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+
+}
