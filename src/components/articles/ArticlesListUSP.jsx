@@ -5,7 +5,7 @@ const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [tot, setTot] = useState(0);
-  const [limit, setLimit] = useState(5); 
+  const [limit, setLimit] = useState(parseInt(searchParams.get('limit')) || 5);
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
 
   const fetchArticles = async (page, limit) => {
@@ -21,13 +21,12 @@ const ArticlesList = () => {
 
   useEffect(() => {
     const page = parseInt(searchParams.get('page')) || 1;
-    const limit = parseInt(searchParams.get('limit')) || 5;
-    setLimit(limit);
+    
     fetchArticles(page, limit);
-  }, [searchParams]);
+  }, [searchParams, limit]);
 
   const handlePageChange = (newPage) => {
-    setSearchParams({ page: newPage });
+    setSearchParams({ page: newPage, limit, q: searchQuery });
   };
 
   const currentPage = parseInt(searchParams.get('page')) || 1;
@@ -50,50 +49,69 @@ const ArticlesList = () => {
     return pageNumbers;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSearchParams({ q: searchQuery });
-   // navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
-   fetchArticles(1,5)
+  const handleSearchChange= (event) => {
+    setSearchQuery(event.target.value);
+    setSearchParams({ page: 1, limit, q: event.target.value });
+    fetchArticles(1, limit);
+  };
+
+  const handleLimitChange = (event) => {
+    const newLimit = parseInt(event.target.value, 10);
+    setSearchParams({ page: 1, limit: newLimit, q: searchQuery });
+    setLimit(newLimit);
   };
 
   return (
     <div>
-       <form onSubmit={handleSubmit}>
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}> 
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
-      />
-      <button type="submit">Search</button>
-    </div>   
-    </form>
-    <div>
-       <ul>
-        {articles.map(article => (
-          <li key={article._id}>{article.designation}</li>
-        ))}
-      </ul>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
-        <button 
-          onClick={() => handlePageChange(currentPage - 1)} 
-          disabled={currentPage <= 1}
-          style={{ margin: '0 5px', padding: '5px 10px', cursor: 'pointer' }}
-        >
-          Previous
-        </button>
-        {renderPageNumbers()}
-        <button 
-          onClick={() => handlePageChange(currentPage + 1)} 
-          disabled={currentPage >= totalPages}
-          style={{ margin: '0 5px', padding: '5px 10px', cursor: 'pointer' }}
-        >
-          Next
-        </button>
+      <div> 
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(event) => handleSearchChange(event)}
+        />
+      </div>   
+  
+      <div>
+        <ul>
+          {articles.map(article => (
+            <li key={article._id}>{article.designation}</li>
+          ))}
+        </ul>
+        <div style={{ "display": "flex", "justifyContent": "right"}}> 
+          <div className="limit-selector-container">
+            <label>
+              Afficher &nbsp;
+              <select
+                value={limit}
+                onChange={(event) => handleLimitChange(event)}
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value={100}>100</option>
+              </select>
+            </label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
+            <button 
+              onClick={() => handlePageChange(currentPage - 1)} 
+              disabled={currentPage <= 1}
+              style={{ margin: '0 5px', padding: '5px 10px', cursor: 'pointer' }}
+            >
+              Previous
+            </button>
+            {renderPageNumbers()}
+            <button 
+              onClick={() => handlePageChange(currentPage + 1)} 
+              disabled={currentPage >= totalPages}
+              style={{ margin: '0 5px', padding: '5px 10px', cursor: 'pointer' }}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
